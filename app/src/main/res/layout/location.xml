@@ -35,48 +35,69 @@
         app:layout_constraintGuide_end="24dp" />
 
     <TextView
-        android:id="@+id/city_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_location_city_24dp"
-        android:drawablePadding="4dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="City"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/venue_label" />
+      android:id="@+id/venue_textview"
+      android:textStyle="bold"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:drawableLeft="@drawable/ic_add_location_black_24dp"
+      android:drawablePadding="4dp"
+      android:fontFamily="@font/montserrat_regular"
+      android:text="Venue"
+      android:textColor="@color/colorPrimary"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+      app:layout_constraintTop_toBottomOf="@+id/place_label"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_label"
-        app:srcCompat="@drawable/ic_arrow_forward_white_24dp" />
+      android:id="@+id/floatingActionButtonLocation"
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_marginTop="16dp"
+      android:clickable="true"
+      android:src="@drawable/ic_arrow_forward_white_24dp"
+      app:backgroundTint="@color/colorPrimary"
+      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+      app:layout_constraintTop_toBottomOf="@+id/city_label"/>
 
     <TextView
-        android:id="@+id/venue_textview"
+      android:id="@+id/place_textview"
+      android:textStyle="bold"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:drawableLeft="@drawable/ic_location_on_24dp"
+      android:fontFamily="@font/montserrat_regular"
+      android:text="Place"
+      android:textColor="@color/colorPrimary"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/place_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_location_on_24dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Venue"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxStrokeColor="@color/colorPrimary"
         app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
         app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date" />
+        app:layout_constraintTop_toBottomOf="@+id/place_textview">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:textCursorDrawable="@color/colorPrimary"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/venue_label"
@@ -99,26 +120,37 @@
             android:textCursorDrawable="@color/colorPrimary"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
-
+    <TextView
+      android:id="@+id/city_textview_id"
+      android:textStyle="bold"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:drawableLeft="@drawable/ic_location_city_24dp"
+      android:drawablePadding="4dp"
+      android:fontFamily="@font/montserrat_regular"
+      android:text="City"
+      android:textColor="@color/colorPrimary"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+      app:layout_constraintTop_toBottomOf="@+id/venue_label"/>
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/city_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:boxStrokeColor="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/city_textview">
+      android:id="@+id/city_label"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      app:boxBackgroundMode="outline"
+      app:boxCornerRadiusBottomEnd="4dp"
+      app:boxCornerRadiusBottomStart="4dp"
+      app:boxCornerRadiusTopEnd="4dp"
+      app:boxCornerRadiusTopStart="4dp"
+      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+      app:layout_constraintTop_toBottomOf="@+id/city_textview_id">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:textCursorDrawable="@color/colorPrimary"
-            android:textStyle="bold" />
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

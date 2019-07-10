@@ -45,7 +45,7 @@
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paid_price_label"
-        app:srcCompat="@drawable/ic_done_white_24dp" />
+        android:src="@drawable/ic_done_white_24dp" />
 
     <TextView
         android:id="@+id/paid_ticket_name"

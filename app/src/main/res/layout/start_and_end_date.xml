@@ -59,33 +59,34 @@
         app:layout_constraintTop_toBottomOf="@+id/create_event_startdate" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_event_enddate"
-        app:srcCompat="@drawable/ic_arrow_forward_white_24dp" />
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/floatingActionButtonCalendar"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginTop="24dp"
+    android:layout_marginEnd="8dp"
+    android:clickable="true"
+    app:backgroundTint="@color/colorPrimary"
+    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+    app:layout_constraintTop_toBottomOf="@+id/create_event_enddate"
+    android:src="@drawable/ic_arrow_forward_white_24dp"
+    android:focusable="true"/>
 
-    <Button
-        android:id="@+id/create_event_startdate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_calendar_white"
-        android:fontFamily="@font/montserrat_bold"
-        android:paddingRight="16dp"
-        android:text="Pick date and time"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
-        app:layout_constraintTop_toBottomOf="@+id/Start__date_textview" />
+  <Button
+    android:id="@+id/create_event_startdate"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:paddingRight="16dp"
+    android:background="@color/colorPrimary"
+    android:drawableRight="@drawable/ic_calendar_white"
+    android:fontFamily="@font/montserrat_bold"
+    android:text="Pick date and time"
+    android:textColor="@color/colorWhite"
+    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
+    app:layout_constraintTop_toBottomOf="@+id/Start__date_textview"/>
 
     <Button
         android:id="@+id/create_event_enddate"
@@ -115,3 +116,5 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

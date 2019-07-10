@@ -36,6 +36,8 @@
             android:parentActivityName=".Tickets"/>
         <activity android:name=".PaidTickets"
             android:parentActivityName=".Tickets"/>
+        <activity android:name=".DraftList"
+          android:parentActivityName=".FreeTickets"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

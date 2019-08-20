@@ -6,6 +6,27 @@
     <string name="nav_header_subtitle">kazebrice98@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string-array name="spinner_category">
+         <item >Add Category</item>
+         <item >Other </item>
+        <item >Business</item>
+        <item>Concerts</item>
+        <item>Photography</item>
+        <item>Festivals</item>
+        <item>Conferences</item>
+        <item>Fashion</item>
+        <item>Birthday</item>
+        <item>Meetups</item>
+        <item>Comedy</item>
+        <item>Trips</item>
+    </string-array>
+
+
+    <string-array name="spinner_ticket">
+      <item >Add Ticket Types</item>
+      <item>Free Ticket</item>
+      <item >Paid Ticket</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

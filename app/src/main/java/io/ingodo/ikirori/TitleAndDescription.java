@@ -6,8 +6,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View.OnFocusChangeListener;
+import android.widget.EditText;
+import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,19 +20,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-
 import com.bumptech.glide.Glide;
+import com.google.android.material.textfield.TextInputLayout;
+import io.ingodo.ikirori.data.Event;
+
 
 public class TitleAndDescription extends AppCompatActivity {
-
-  private Button image_button;
-  private ImageView imageview;
-  private ImageView iconview;
-  //    private static final String IMAGE_DIRECTORY = "/demonuts";
-  private int GALLERY = 1, CAMERA = 2;
+  private int GALLERY_REQUEST_CODE = 1;
+  private int CAMERA_REQUEST_CODE = 2;
+  private static final String TAG = TitleAndDescription.class.getSimpleName();
 
   Toolbar mToolbar;
+  private Button mUploadImageButton;
+  private ImageView mEventImageView;
+  private ImageView mCameraIconView;
+  private TextInputLayout mTitleView;
+  private TextInputLayout mDescriptionView;
+  private TextView mTitleErrorTextview;
+  private TextView mDescriptionErrorTextview;
+  private TextView mEventImageUriErrorTextView;
+
+  Event mEvent;
+
+  private Uri mEventImageURI;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,49 +54,93 @@ public class TitleAndDescription extends AppCompatActivity {
     mToolbar = findViewById(R.id.toolbar_create_event);
     setSupportActionBar(mToolbar);
 
+
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+
+
+
+
+    FloatingActionButton fab = findViewById(R.id.floatingActionButton);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        mEvent = new Event();
+        if (mEventImageURI==null) {
+        mEventImageUriErrorTextView.setVisibility(View.VISIBLE);
+        } else
 
-        startActivity(new Intent(view.getContext(),
-            StartAndEndDate.class));
+        if (mTitleView.getEditText().length()==0) {
+          mTitleErrorTextview.setVisibility(View.VISIBLE);
 
-      }
+        }
+        else
+          if( mDescriptionView.getEditText().length()==0  ) {
+          mDescriptionErrorTextview.setVisibility(View.VISIBLE);
+        }
+          else if(mEventImageURI!=null & mTitleView.getEditText().length()!=0 & mDescriptionView.getEditText().length()!=0 )
+          {
+
+            mEvent.setEventImageUri(mEventImageURI);
+            mEvent.setDescription(mDescriptionView.getEditText().getText().toString());
+            mEvent.setTitle(mTitleView.getEditText().getText().toString());
+            Log.d(TAG, mEvent.toString());
+            Intent intent = new Intent(TitleAndDescription.this, StartAndEndDate.class);
+            intent.putExtra(Event.EVENT_EXTRA, mEvent);
+            startActivity(intent);
+          }
+
+       }
     });
 
-    image_button = (Button) findViewById(R.id.uploadbutton);
-    iconview = (ImageView) findViewById(R.id.iconview);
-    imageview = (ImageView) findViewById(R.id.imageviewsplash);
 
-    image_button.setOnClickListener(new View.OnClickListener() {
+
+
+    mUploadImageButton = (Button) findViewById(R.id.uploadbutton);
+    mCameraIconView = (ImageView) findViewById(R.id.iconview);
+    mEventImageView = (ImageView) findViewById(R.id.imageviewsplash);
+
+    mUploadImageButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
 
         showPictureDialog();
+        mEventImageUriErrorTextView.setVisibility(View.INVISIBLE);
       }
     });
 
+    mTitleView =findViewById(R.id.event_title_label_id);
+    mTitleView.getEditText().setOnFocusChangeListener(new OnFocusChangeListener() {
+
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+
+        if(!hasFocus){
+          mTitleErrorTextview.setVisibility(View.INVISIBLE);
+        }
+      }
+    });
+
+    mDescriptionView =findViewById (R.id.event_description_label_id);
+    mDescriptionView.getEditText().setOnFocusChangeListener(new OnFocusChangeListener() {
+
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+
+        if(!hasFocus){
+          mDescriptionErrorTextview.setVisibility(View.INVISIBLE);
+        }
+      }
+    });
+
+    mTitleErrorTextview = findViewById(R.id.title_error_textView);
+    mDescriptionErrorTextview = findViewById(R.id.Description_error_textview);
+    mEventImageUriErrorTextView = findViewById(R.id.EventImageUriErrorTextview);
+
+
   }
-
-//    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-//        int width = image.getWidth();
-//        int height = image.getHeight();
-//
-//        float bitmapRatio = (float)width / (float) height;
-//        if (bitmapRatio > 1) {
-//            width = maxSize;
-//            height = (int) (width / bitmapRatio);
-//        } else {
-//            height = maxSize;
-//            width = (int) (height * bitmapRatio);
-//        }
-//        return Bitmap.createScaledBitmap(image, width, height, true);
-//    }
-
 
   private void showPictureDialog() {
     AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -108,17 +166,18 @@ public class TitleAndDescription extends AppCompatActivity {
   }
 
 
+
   public void choosePhotoFromGallary() {
     Intent galleryIntent = new Intent(Intent.ACTION_PICK,
         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     galleryIntent.setType("image/*");
 
-    startActivityForResult(galleryIntent, GALLERY);
+    startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
   }
 
   private void takePhotoFromCamera() {
     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    startActivityForResult(intent, CAMERA);
+    startActivityForResult(intent, CAMERA_REQUEST_CODE);
   }
 
 
@@ -130,57 +189,23 @@ public class TitleAndDescription extends AppCompatActivity {
       return;
     }
 
-    if (requestCode == GALLERY && data != null) {
+    if (requestCode == GALLERY_REQUEST_CODE && data != null) {
 
-      Uri contentURI = data.getData();
+       mEventImageURI = data.getData();
 
       Glide.with(this)
-          .load(contentURI)
-          // .resize(, 200)
-//                    .rotate(90)
-          .into(imageview);
+          .load(mEventImageURI)
+          .into(mEventImageView);
 
-      iconview.setVisibility(View.INVISIBLE);
-      ;
+      mCameraIconView.setVisibility(View.INVISIBLE);
 
-      // }
-    } else if (requestCode == CAMERA) {
+    } else if (requestCode == CAMERA_REQUEST_CODE) {
       Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-      imageview.setImageBitmap(thumbnail);
-//            saveImage(thumbnail);
+      mEventImageView.setImageBitmap(thumbnail);
+
       Toast.makeText(TitleAndDescription.this, "Image Saved!", Toast.LENGTH_SHORT).show();
     }
   }
-
-//    public String saveImage(Bitmap myBitmap) {
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//        File wallpaperDirectory = new File(
-//                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
-//        // have the object build the directory structure, if needed.
-//        if (!wallpaperDirectory.exists()) {
-//            wallpaperDirectory.mkdirs();
-//        }
-//
-//        try {
-//            File f = new File(wallpaperDirectory, Calendar.getInstance()
-//                    .getTimeInMillis() + ".jpg");
-//            f.createNewFile();
-//            FileOutputStream fo = new FileOutputStream(f);
-//            fo.write(bytes.toByteArray());
-//            MediaScannerConnection.scanFile(this,
-//                    new String[]{f.getPath()},
-//                    new String[]{"image/jpeg"}, null);
-//            fo.close();
-//            Log.d("TAG", "File Saved::---&gt;" + f.getAbsolutePath());
-//
-//            return f.getAbsolutePath();
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
-//        return "";
-//    }
-
 
 }
 

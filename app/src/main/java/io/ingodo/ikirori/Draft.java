@@ -3,15 +3,18 @@ package io.ingodo.ikirori;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.ingodo.ikirori.adapter.OnDeleteClickListener;
 import io.ingodo.ikirori.data.Event;
-import java.util.ArrayList;
+import io.ingodo.ikirori.data.EventRepository;
+import io.ingodo.ikirori.data.EventViewModel;
 import java.util.List;
 
 
@@ -23,15 +26,20 @@ import java.util.List;
  * Use the {@link Draft#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Draft extends Fragment {
+public class Draft extends Fragment implements OnDeleteClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     View v;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-  private List<Event> mEvents;
+    private List<Event> mEvents;
+    EventRepository mRepository;
+
 
   private RecyclerView mRecyclerView;
+  private adapter mRecyclerAdapter;
+  private EventViewModel mModel;
+//  private RecyclerViewAdapter madapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -55,8 +63,8 @@ public class Draft extends Fragment {
     public static Draft newInstance(String param1, String param2) {
         Draft fragment = new Draft();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,27 +73,45 @@ public class Draft extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mEvents=new ArrayList<>();
+//        mEvents=new ArrayList<>();
         setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
       View view = inflater.inflate(R.layout.fragment_draft, container, false);
+
       mRecyclerView = (RecyclerView)view.findViewById(R.id.draft_recyclerview);
-      RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(getContext(),mEvents);
-      mRecyclerView.setAdapter(recyclerAdapter);
+      mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+      mRecyclerAdapter = new adapter(getContext(),mEvents,this);
+      mRecyclerView.setAdapter(mRecyclerAdapter);
         // Inflate the layout for this fragment
+
+       mModel= ViewModelProviders.of(this).get(EventViewModel.class);
+
+      mModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+        @Override
+        public void onChanged(List<Event> events) {
+          mRecyclerAdapter.setEvents(events);
+        }
+      });
 
 
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -111,7 +137,13 @@ public class Draft extends Fragment {
         mListener = null;
     }
 
-    /**
+  @Override
+  public void OnDeleteClickListener(Event myEvent) {
+    mRepository = new EventRepository(getActivity().getApplication());
+    mRepository.delete(myEvent);
+  }
+
+  /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that

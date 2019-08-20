@@ -20,6 +20,18 @@
         app:titleTextAppearance="@style/Ikirori_TextAppearance_Toolbar"
         app:titleTextColor="@android:color/white" />
 
+  <ScrollView
+    android:id="@+id/scrollView_location"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:fillViewport="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date">
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/scrollview_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/location_guideline_left"
         android:layout_width="wrap_content"
@@ -34,33 +46,34 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-    <TextView
-      android:id="@+id/venue_textview"
-      android:textStyle="bold"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:drawableLeft="@drawable/ic_add_location_black_24dp"
-      android:drawablePadding="4dp"
-      android:fontFamily="@font/montserrat_regular"
-      android:text="Venue"
-      android:textColor="@color/colorPrimary"
-      android:textSize="18sp"
-      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-      app:layout_constraintTop_toBottomOf="@+id/place_label"/>
+  <TextView
+    android:id="@+id/venue_textview"
+    android:textStyle="bold"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:drawablePadding="4dp"
+    app:drawableLeftCompat="@drawable/ic_add_location_black_24dp"
+    android:fontFamily="@font/montserrat_regular"
+    android:text="Address"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+    app:layout_constraintTop_toBottomOf="@+id/place_label"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floatingActionButtonLocation"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:layout_marginTop="16dp"
-      android:clickable="true"
-      android:src="@drawable/ic_arrow_forward_white_24dp"
-      app:backgroundTint="@color/colorPrimary"
-      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
-      app:layout_constraintTop_toBottomOf="@+id/city_label"/>
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+      app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/cityErrorTextview"/>
+
 
     <TextView
       android:id="@+id/place_textview"
@@ -68,14 +81,15 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
-      android:drawableLeft="@drawable/ic_location_on_24dp"
       android:fontFamily="@font/montserrat_regular"
+      app:drawableLeftCompat="@drawable/ic_location_on_24dp"
       android:text="Place"
       android:textColor="@color/colorPrimary"
       android:textSize="18sp"
       app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
       app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date"/>
+      app:layout_constraintTop_toTopOf="parent"/>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/place_label"
@@ -91,12 +105,12 @@
         app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/place_textview">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:textCursorDrawable="@color/colorPrimary"
-            android:textStyle="bold" />
+      <com.google.android.material.textfield.TextInputEditText
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:textCursorDrawable="@color/colorPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -120,21 +134,22 @@
             android:textCursorDrawable="@color/colorPrimary"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-      android:id="@+id/city_textview_id"
-      android:textStyle="bold"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:drawableLeft="@drawable/ic_location_city_24dp"
-      android:drawablePadding="4dp"
-      android:fontFamily="@font/montserrat_regular"
-      android:text="City"
-      android:textColor="@color/colorPrimary"
-      android:textSize="18sp"
-      app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
-      app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
-      app:layout_constraintTop_toBottomOf="@+id/venue_label"/>
+  <TextView
+    android:id="@+id/city_textview_id"
+    android:textStyle="bold"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:drawablePadding="4dp"
+    app:drawableLeftCompat="@drawable/ic_location_city_24dp"
+    android:fontFamily="@font/montserrat_regular"
+    android:text="City"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toStartOf="@+id/location_guideline_right"
+    app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+    app:layout_constraintTop_toBottomOf="@+id/venue_label"/>
+
     <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/city_label"
       android:layout_width="0dp"
@@ -153,4 +168,42 @@
           android:layout_height="wrap_content"
           />
     </com.google.android.material.textfield.TextInputLayout>
+  <TextView
+    android:id="@+id/placeErrorTextview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Invalid place field "
+    android:textColor="@color/colorPrimary"
+      app:drawableLeftCompat="@drawable/ic_report_black_24dp"
+    android:visibility="invisible"
+    app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+    app:layout_constraintTop_toBottomOf="@+id/place_label"/>
+
+  <TextView
+    android:id="@+id/adressErrorTextview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Invalid Adress field"
+    android:textColor="@color/colorPrimary"
+    app:drawableLeftCompat="@drawable/ic_report_black_24dp"
+    android:visibility="invisible"
+    app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+    app:layout_constraintTop_toBottomOf="@+id/venue_label"/>
+
+  <TextView
+    android:id="@+id/cityErrorTextview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Invalid City field"
+    android:textColor="@color/colorPrimary"
+      app:drawableLeftCompat="@drawable/ic_report_black_24dp"
+    android:visibility="invisible"
+    app:layout_constraintStart_toStartOf="@+id/location_guideline_left"
+    app:layout_constraintTop_toBottomOf="@+id/city_label"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

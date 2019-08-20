@@ -35,17 +35,17 @@
         app:layout_constraintGuide_end="24dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonPaidTickets"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+      android:id="@+id/floatingActionButtonPaidTickets"
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
 
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paid_price_label"
-        android:src="@drawable/ic_done_white_24dp" />
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:clickable="true"
+      app:srcCompat="@drawable/ic_done_white_24dp"
+      app:backgroundTint="@color/colorPrimary"
+      app:layout_constraintEnd_toStartOf="@+id/guideline7"
+      app:layout_constraintTop_toBottomOf="@+id/paid_quantity_label"/>
 
     <TextView
         android:id="@+id/paid_ticket_name"
@@ -82,17 +82,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/paid_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Description"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/paid_ticket_name_label" />
+      android:id="@+id/paid_description"
+      android:textStyle="bold"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:fontFamily="@font/montserrat_regular"
+      android:text="Quantity"
+      android:textColor="@color/colorPrimary"
+      android:textSize="18sp"
+      app:layout_constraintStart_toStartOf="@+id/guideline6"
+      app:layout_constraintTop_toBottomOf="@+id/paid_ticket_name_label"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/paid_description_label"
@@ -116,17 +116,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/paid_quantity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Quantity"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/paid_description_label" />
+      android:id="@+id/paid_quantity"
+      android:textStyle="bold"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:fontFamily="@font/montserrat_regular"
+      android:text="Price"
+      android:textColor="@color/colorPrimary"
+      android:textSize="18sp"
+      app:layout_constraintStart_toStartOf="@+id/guideline6"
+      app:layout_constraintTop_toBottomOf="@+id/paid_description_label"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/paid_quantity_label"
@@ -141,40 +141,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/paid_quantity">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/paid_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Price"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/paid_quantity_label" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/paid_price_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:boxStrokeColor="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/paid_price">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

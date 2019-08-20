@@ -36,6 +36,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        if(savedInstanceState==null) {
+//            getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.main_content,new Draft())
+//                .addToBackStack("event list")
+//                .commit();
+//        }
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {

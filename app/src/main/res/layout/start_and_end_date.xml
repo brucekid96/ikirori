@@ -45,18 +45,18 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-    <TextView
-        android:id="@+id/End__date_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="To :"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
-        app:layout_constraintTop_toBottomOf="@+id/create_event_startdate" />
+  <TextView
+    android:id="@+id/End__date_textview"
+    android:textStyle="bold"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:fontFamily="@font/montserrat_regular"
+    android:text="To :"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18sp"
+    app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
+    app:layout_constraintTop_toBottomOf="@+id/create_event_startdate"/>
 
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -69,7 +69,7 @@
     app:backgroundTint="@color/colorPrimary"
     app:layout_constraintEnd_toStartOf="@+id/guideline4"
     app:layout_constraintTop_toBottomOf="@+id/create_event_enddate"
-    android:src="@drawable/ic_arrow_forward_white_24dp"
+    app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
     android:focusable="true"/>
 
   <Button
@@ -78,8 +78,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:paddingRight="16dp"
+    app:drawableRightCompat="@drawable/ic_calendar_white"
     android:background="@color/colorPrimary"
-    android:drawableRight="@drawable/ic_calendar_white"
     android:fontFamily="@font/montserrat_bold"
     android:text="Pick date and time"
     android:textColor="@color/colorWhite"
@@ -88,13 +88,14 @@
     app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
     app:layout_constraintTop_toBottomOf="@+id/Start__date_textview"/>
 
+
     <Button
         android:id="@+id/create_event_enddate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_calendar_white"
+        app:drawableRightCompat="@drawable/ic_calendar_white"
         android:fontFamily="@font/montserrat_bold"
         android:paddingRight="16dp"
         android:text="Pick date and time"
@@ -102,6 +103,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
         app:layout_constraintTop_toBottomOf="@+id/End__date_textview" />
+
 
     <TextView
         android:id="@+id/Start__date_textview"
@@ -115,6 +117,30 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_event_date" />
+  <TextView
+    android:id="@+id/pickstartdateError"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Invalid start Date "
+  app:drawableLeftCompat="@drawable/ic_report_black_24dp"
+    android:textColor="@color/colorPrimary"
+    android:visibility="invisible"
+    app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
+    app:layout_constraintTop_toBottomOf="@+id/create_event_startdate"
+    tools:visibility="invisible"/>
+
+  <TextView
+    android:id="@+id/pickendDateError"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Invalid  End Date "
+    android:textColor="@color/colorPrimary"
+    app:drawableLeftCompat="@drawable/ic_report_black_24dp"
+    android:visibility="invisible"
+    app:layout_constraintStart_toStartOf="@+id/guideline_starter_for_date_layout"
+    app:layout_constraintTop_toBottomOf="@+id/create_event_enddate"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

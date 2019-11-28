@@ -3,6 +3,7 @@ package io.ingodo.ikirori;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -55,14 +56,13 @@ public class Category  extends AppCompatActivity {
     final ArrayAdapter<String> adapter_category = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.spinner_category));
     adapter_ticket.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     mSpinnerCategory.setAdapter(adapter_category);
-
+     mSpinnerCategory.setPrompt("bonjour");
        mSpinnerTicket.setOnItemSelectedListener(new OnItemSelectedListener() {
          @Override
          public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
            SpinnerTicketSelected = mSpinnerTicket.getSelectedItem().toString();
            if(SpinnerTicketSelected.contains("Paid Ticket")) {
              Intent intent = new Intent(Category.this, PaidTickets.class);
-             intent.putExtra(Event.EVENT_EXTRA, mEvent);
              startActivity(intent);
            }
          }
@@ -94,7 +94,8 @@ public class Category  extends AppCompatActivity {
           mEvent.setPrivacy("Private");
         }
 
-       mEvent.setCategory(mSpinnerTicket.getSelectedItem().toString());
+       mEvent.setCategory(mSpinnerCategory.getSelectedItem().toString());
+        Log.d(Category.class.getSimpleName(), mEvent.toString());
         mRepository = new EventRepository(getApplication());
         mRepository.insert(mEvent);
         Intent intent = new Intent(Category.this, HomeActivity.class);

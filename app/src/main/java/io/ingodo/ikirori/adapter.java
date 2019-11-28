@@ -51,10 +51,6 @@ public class adapter
     }
   }
 
-
-
-
-
   @Override
   public EventCardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
@@ -66,33 +62,6 @@ public class adapter
   public void onBindViewHolder(@NonNull EventCardHolder eventCardHolder,int  position) {
     eventCardHolder.getEventCard().bindEvent(mEvents.get(position));
   }
-
-
-  private void showCardDialog() {
-    AlertDialog.Builder cardDialog = new AlertDialog.Builder(mContext);
-    cardDialog.setTitle("Select Action");
-    String[] cardDialogItems = {
-        "delete all events",
-    };
-
-    cardDialog.setItems(cardDialogItems,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            switch (which) {
-              case 0:
-                if(onDeleteClickListener!=null) {
-                  onDeleteClickListener.OnDeleteClickListener(mEvents.get(mPosition));
-                }
-//              mEventViewModel.deleteEvent(mEvent);
-                break;
-            }
-          }
-        });
-    cardDialog.show();
-  }
-
-
 
 
   @Override

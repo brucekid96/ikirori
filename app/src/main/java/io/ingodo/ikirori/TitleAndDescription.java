@@ -106,7 +106,7 @@ public class TitleAndDescription extends AppCompatActivity {
       @Override
       public void onClick(View v) {
 
-        showPictureDialog();
+        choosePhotoFromGallary();
         mEventImageUriErrorTextView.setVisibility(View.INVISIBLE);
       }
     });
@@ -141,8 +141,8 @@ public class TitleAndDescription extends AppCompatActivity {
 
 
   }
-
-  private void showPictureDialog() {
+  //dialogInterfaces
+  /*private void showPictureDialog() {
     AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
     pictureDialog.setTitle("Select Action");
     String[] pictureDialogItems = {
@@ -163,7 +163,7 @@ public class TitleAndDescription extends AppCompatActivity {
           }
         });
     pictureDialog.show();
-  }
+  }*/
 
 
 
@@ -175,10 +175,7 @@ public class TitleAndDescription extends AppCompatActivity {
     startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
   }
 
-  private void takePhotoFromCamera() {
-    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    startActivityForResult(intent, CAMERA_REQUEST_CODE);
-  }
+
 
 
   @Override
@@ -195,15 +192,10 @@ public class TitleAndDescription extends AppCompatActivity {
 
       Glide.with(this)
           .load(mEventImageURI)
-          .into(mEventImageView);
+            .into(mEventImageView);
 
       mCameraIconView.setVisibility(View.INVISIBLE);
 
-    } else if (requestCode == CAMERA_REQUEST_CODE) {
-      Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-      mEventImageView.setImageBitmap(thumbnail);
-
-      Toast.makeText(TitleAndDescription.this, "Image Saved!", Toast.LENGTH_SHORT).show();
     }
   }
 

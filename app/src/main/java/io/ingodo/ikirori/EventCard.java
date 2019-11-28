@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.Date;
 
 
 public class EventCard extends ConstraintLayout {
-
+  private String TAG = Event.class.getSimpleName();
   private Context mContext;
   private ImageView mImage;
   private TextView mTitle;
@@ -32,7 +33,7 @@ public class EventCard extends ConstraintLayout {
   private TextView more;
   private TextView mEditEvent;
   private ImageView mEventImageView;
-  
+
   private Event mEvent;
 
 
@@ -56,8 +57,8 @@ public class EventCard extends ConstraintLayout {
 
 
   public void bindEvent(Event event) {
+    Log.d(TAG,event.toString());
     mEvent = event;
-
     mImage.setImageURI(mEvent.getEventImageUri());
     mTitle.setText(mEvent.getTitle());
     mStartDate.setText(calendarToString(mEvent.getStartDate()));
@@ -70,9 +71,8 @@ public class EventCard extends ConstraintLayout {
       public void onClick(View v) {
         mRepository = new EventRepository(getContext());
         Intent intent = new Intent(getContext(), EditEvent.class);
+        intent.putExtra(Event.EVENT_EXTRA, mEvent);
         getContext().startActivity(intent);
-        mEventImageView =  findViewById(R.id.imageviewsplash);
-        
 
       }
     });
@@ -84,14 +84,6 @@ public class EventCard extends ConstraintLayout {
       }
     });
   }
-
-
-
-
-
-
-
-
 
 
 

@@ -6,14 +6,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
 import com.google.android.material.tabs.TabLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SearchView;
-
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;

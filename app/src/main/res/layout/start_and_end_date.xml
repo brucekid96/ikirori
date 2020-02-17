@@ -72,7 +72,7 @@
     app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
     android:focusable="true"/>
 
-  <Button
+  <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/create_event_startdate"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
     app:layout_constraintTop_toBottomOf="@+id/Start__date_textview"/>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/create_event_enddate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

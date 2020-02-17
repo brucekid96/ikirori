@@ -127,20 +127,20 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-              android:id="@+id/uploadbutton"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:background="@color/colorPrimary"
-              android:fontFamily="@font/montserrat_bold"
-              android:layout_marginTop="16dp"
-              android:text="Upload Image"
-              android:textColor="@color/colorWhite"
-              android:paddingRight="16dp"
-              app:drawableRightCompat="@drawable/ic_file_upload_white_24dp"
-              app:layout_constraintEnd_toStartOf="@+id/guideline2"
-              app:layout_constraintStart_toStartOf="@+id/guideline"
-              app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/uploadbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingRight="16dp"
+                android:text="Upload Image"
+                android:textColor="@color/colorWhite"
+                app:drawableRightCompat="@drawable/ic_file_upload_white_24dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
             <androidx.appcompat.widget.AppCompatTextView

@@ -9,17 +9,6 @@
     tools:context=".HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-    <!--<android.support.v7.widget.Toolbar-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/content_main_toolbar"-->
-    <!--android:background="@color/colorPrimary"-->
-    <!--android:minHeight="?attr/actionBarSize"-->
-    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light">-->
-
-
-    <!--</android.support.v7.widget.Toolbar>-->
 
 
     <com.google.android.material.tabs.TabLayout
